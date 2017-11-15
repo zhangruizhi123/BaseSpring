@@ -8,13 +8,15 @@ http://www.springframework.org/schema/context
 http://www.springframework.org/schema/context/spring-context-4.3.xsd 
 http://www.springframework.org/schema/mvc 
 http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
-
 	<!-- 引入配置文件 -->
+	<context:property-placeholder location="classpath:file.properties"/>
+	<!-- 
 	<bean id="configBean" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="location">
 			<value>classpath:file.properties</value>
 		</property>
 	</bean>
+	 -->
 	<!-- 自动扫描controller包下的所有类，使其认为spring mvc的控制器 -->
 	<context:component-scan base-package="com.cjeg">
 		<context:include-filter type="annotation"
@@ -23,6 +25,9 @@ http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
 			expression="org.springframework.stereotype.Service" />
 	</context:component-scan>
 	
+	<bean id="abc" class="com.cjeg.web.admin.controller.Test">
+		<property name="files"  value="${fileUploadPath}"/>
+	</bean>
 	<!-- 获取配置文件 -->
 	<bean id="configs" class="com.cjeg.core.Configs">
 		<property name="files">
@@ -49,8 +54,9 @@ http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
 	<mvc:resources location="/static/js/" mapping="/js/**" />
 	<mvc:resources location="/static/css/" mapping="/css/**" />
 	<mvc:resources location="/static/img/" mapping="/img/**" />
+	<mvc:resources location="file:${fileUploadPath}/" mapping="/files/**" />
+	
 	<!-- 
-	<mvc:resources location="file:${fileUploadPath}" mapping="/files/**" />
 	 -->
 	<!-- <mvc:resources location="file:D:/img/" mapping="/files/**" /> -->
 	<!-- 拦截器 -->

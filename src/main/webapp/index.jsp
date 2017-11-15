@@ -4,6 +4,7 @@
 <c:set var="ctx" value="<%=request.getContextPath()%>"/>
 <html>
 <body>
+<img alt="无法加载图片" src="${ctx }/img/abc.png">
 <h2>Hello World!</h2>
 </body>
 </html>

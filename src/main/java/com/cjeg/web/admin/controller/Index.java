@@ -5,6 +5,7 @@ import java.io.File;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,6 +27,8 @@ import com.cjeg.web.admin.model.PPP;
 @RequestMapping("")
 public class Index {
 	
+	@Autowired
+	private Test abc;
 	private Logger logger=Logger.getLogger(Index.class);
 	//将根目录重定向到index页面
 	@RequestMapping("/")
@@ -66,6 +69,7 @@ public class Index {
 	@RequestMapping("/tables")
 	//@ResponseBody
 	public String listTable(HttpSession session){
+		System.out.println(abc);
 		Database database=new Database();
 		database.setHost("localhost");
 		database.setPort(3306);
