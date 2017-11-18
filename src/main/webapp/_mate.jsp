@@ -86,7 +86,18 @@ function toast(msg){
 		$(this).remove();
 	});*/
 }
+
+//调整页面的高度
+function resizeHeigt(){
+	try{
+		var $iframe=$(window.parent.document).find("#bodyFrame");
+		var height=$(document).height()+30;
+		$iframe.height(height);
+		
+	}catch(error){
+	}
+}
 $(function(){
-	//alertMsg("调用插件成功");
+	resizeHeigt();
 });
 </script>

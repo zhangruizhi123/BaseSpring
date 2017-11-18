@@ -14,7 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.cjeg.Util.database.Database;
 import com.cjeg.core.annotation.Authority;
-import com.cjeg.web.admin.model.PPP;
 
 /**
  * 
@@ -57,12 +56,11 @@ public class Index {
 	
 	@RequestMapping(value="/upload")
 	@ResponseBody
-	public String upload(@RequestParam("file")MultipartFile file ,PPP p) throws Exception{
+	public String upload(@RequestParam("file")MultipartFile file ) throws Exception{
 		String sname=file.getOriginalFilename();
 		File files=new File("C:\\Users\\admin\\Desktop\\eeef\\"+sname);
 		file.transferTo(files);
 		System.out.println(sname);
-		System.out.println(p);
 		return "success";
 	}
 	
