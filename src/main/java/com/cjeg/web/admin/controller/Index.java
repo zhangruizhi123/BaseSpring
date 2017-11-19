@@ -7,7 +7,9 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -32,26 +34,13 @@ public class Index {
 	//将根目录重定向到index页面
 	@RequestMapping("/")
 	public String init(){
-		return "redirect:/index";
+		return "login.html";
 	}
 	
-	@RequestMapping("index")
-	public String index(){
-		return "index";
-	}
-	
-	@RequestMapping("people")
-	public String people(){
-		return "people";
-	}
-	
-	
-	@Authority(Authority.SUPADMIN)
-	@RequestMapping(value="/test"/*,method=RequestMethod.POST*/)
-	@ResponseBody
-	public String test(String name,int age){
-		logger.debug("hello word");
-		return name+":"+age;
+	@Authority(Authority.ADMIN)
+	@RequestMapping(value="/{path}",method=RequestMethod.GET)
+	public String page(@PathVariable("path") String path){
+		return path;
 	}
 	
 	@RequestMapping(value="/upload")

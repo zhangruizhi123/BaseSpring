@@ -34,7 +34,7 @@ public class ImageController {
 		OutputStream output=response.getOutputStream();
 		String code=ImageUtils.writeImage(output);
 		//图片验证码
-		session.setAttribute(Consts.IMAGE_SESSION, code);
+		session.setAttribute(Consts.IMAGE_SESSION, code.toLowerCase());
 		output.close();
 	}
 	

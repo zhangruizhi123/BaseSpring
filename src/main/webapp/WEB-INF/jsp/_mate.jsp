@@ -3,14 +3,14 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
 <c:set var="ctx" value="<%=request.getContextPath()%>"/>
-<link rel="icon" href="${ctx}/img/logo.ico" type="img/x-ico" />
-<script type="text/javascript" src="${ctx}/js/jQuery/jquery.min.js"></script>
+<link rel="icon" href="${ctx}/static/img/logo.ico" type="img/x-ico" />
+<script type="text/javascript" src="${ctx}/static/js/jQuery/jquery.min.js"></script>
 
 <!-- 添加bootstrap库 -->
-<script type="text/javascript" src="${ctx}/js/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="${ctx}/js/bootstrap/js/base.js"></script>
-<link rel="stylesheet" type="text/css" href="${ctx}/js/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="${ctx}/js/bootstrap/css/base.css">
+<script type="text/javascript" src="${ctx}/static/js/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${ctx}/static/js/bootstrap/js/base.js"></script>
+<link rel="stylesheet" type="text/css" href="${ctx}/static/js/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/static/js/bootstrap/css/base.css">
 <!-- 使用easy UI 库 -->
 <!-- 
 <link rel="stylesheet" type="text/css"

@@ -191,5 +191,17 @@ public class Sysmenu {
 	public void setOrders(Integer orders) {
 		this.orders = orders;
 	}
-    
+
+	public Sysmenu() {
+		super();
+	}
+    public Sysmenu(UserMenu userMenu){
+    	this.id = userMenu.getMenuId();
+		this.pid = userMenu.getPid();
+		this.name = userMenu.getMenuName();
+		this.url = userMenu.getUrl();
+		this.icon = userMenu.getIcon();
+		this.orders = userMenu.getOrders();
+    }
+	
 }

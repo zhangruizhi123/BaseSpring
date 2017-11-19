@@ -4,6 +4,7 @@ import java.lang.reflect.Method;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -36,9 +37,9 @@ public class MyAuthorInterceptor implements HandlerInterceptor{
 	}
 
 	@Override
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
-			Object arg2) throws Exception {
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response,Object arg2) throws Exception {
 		//获取方法
+		HttpSession sesssion=request.getSession();
 		HandlerMethod method=(HandlerMethod)arg2;
 		String url=request.getRequestURI();
 		url=url.replaceAll(request.getContextPath(), "");
@@ -47,27 +48,20 @@ public class MyAuthorInterceptor implements HandlerInterceptor{
 		if(auth!=null){
 			int value=auth.value();
 			if(value==Authority.ADMIN){
-				System.out.println("一般管理员");
-			}else if(value==Authority.SUPADMIN){
+				//当该用户的session为空时,直接跳转到登录页面
+				if(sesssion.getAttribute(Consts.ADMIN_SESSION)==null){
+					System.out.println("无权限访问");
+					response.sendRedirect(request.getContextPath() + "/login.html"); 
+				}
+			}/*else if(value==Authority.SUPADMIN){
 				System.out.println("超级管理员");
 			}else if(value==Authority.USER){
 				System.out.println("普通用户");
-			}else{
+			}*/else{
 				System.out.println("所有权限");
 			}
 		}
-		/*
-		//除去登录的链接
-		if(url.equals("/admin")||url.equals("/admin/login")||url.equals("/admin/loginSubmit")){
-			return true;
-		}else{
-			//当session中存在数据时直接登录，否者就从定向到登录页面
-			if(request.getSession().getAttribute(Consts.ADMIN_SESSION)==null){
-				//暂时先注释掉，便于开发
-				response.sendRedirect(request.getContextPath() + "/admin"); 
-				return true;
-			}
-		}*/
+		
 		//response.sendRedirect(request.getContextPath() + "/index"); 
 		return true;
 	}

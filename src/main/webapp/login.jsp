@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <jsp:include page="_mate.jsp"></jsp:include>
 <link rel="icon" href="${ctx}/img/favicon.ico" type="image/x-icon" />
-<title>登录页面2</title>
+<title>登录页面1</title>
 </head>
 <body>
 <div class="container">
@@ -20,11 +20,11 @@
 							<span class="modal-title center-block">
 								<i class="glyphicon glyphicon-modal-window"></i>
 								登录
-								<div style="display:inline-block; text-align:center;width:80%;color:#f00" class="error">${logerror}</div>
+								<div style="display:inline-block; text-align:center;width:80%;color:#f00" class="error"></div>
 							</span>
 						</div>
 						<div class="modal-body">
-						<form id="form" action="${ctx}/login.do" method="post">
+						<form id="form" action="${ctx}/login" method="post">
 							<div class="row">
 								<div class="col-lg-12 col-md-12 col-sm-12">
 									<div class="form-group">
@@ -48,7 +48,7 @@
 											</span>
 											<input class="form-control" id="code" name="code" type="text" placeholder="请输入图像验证码"/>
 											<span class="input-group-addon img" style="padding:0px" >
-												<img id="imgs" src="user/image/code.do" style="height:45px;"/>
+												<img id="imgs" src="user/image/code" style="height:45px;"/>
 											</span>
 										</div>
 									</div>
@@ -73,14 +73,10 @@
 </body>
 <script type="text/javascript">
 $(function(){
+	alert("");
 	$(".img").click(function(){
-		$("#imgs")[0].src="${ctx}/user/image/code.do?"+Math.random();
+		$("#imgs")[0].src="${ctx}/user/image/code?"+Math.random();
 	});
-	$(document).keydown(function(event){ 
-		if(event.keyCode==13){ 
-			$(".login").click(); 
-		} 
-	}); 
 	$(".login").click(function(){
 		var user=$("#user").val();
 		var password=$("#password").val();
@@ -92,7 +88,7 @@ $(function(){
 		}else if(code==""){
 			$(".error").html("图像验证码不能为空");
 		}
-		$("#form").submit();
+		alert($("#form").serialize());
 	});
 });
 </script>
