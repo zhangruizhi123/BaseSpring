@@ -27,6 +27,9 @@
 	.padding10{
 		padding:10px;
 	}
+	.container {
+	width: 100%;
+	}
 </style>
 <script>
 //带有前下划线
@@ -97,6 +100,6 @@ function resizeHeigt(){
 	}
 }
 $(function(){
-	resizeHeigt();
+	
 });
 </script>

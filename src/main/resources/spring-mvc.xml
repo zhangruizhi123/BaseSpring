@@ -25,9 +25,6 @@ http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
 			expression="org.springframework.stereotype.Service" />
 	</context:component-scan>
 	
-	<bean id="abc" class="com.cjeg.web.admin.controller.Test">
-		<property name="files"  value="${fileUploadPath}"/>
-	</bean>
 	<!-- 获取配置文件 -->
 	<bean id="configs" class="com.cjeg.core.Configs">
 		<property name="files">

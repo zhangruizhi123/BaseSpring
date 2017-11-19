@@ -2,6 +2,10 @@ package com.cjeg.web.admin.model;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class SysUser {
     /**
      *
@@ -46,6 +50,8 @@ public class SysUser {
      *
      * @mbg.generated
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm")
     private Date createTime;
 
     /**
@@ -161,6 +167,7 @@ public class SysUser {
      *
      * @mbg.generated
      */
+    @DateTimeFormat(pattern="yyy-MM-dd HH:mm:ss")
     public Date getCreateTime() {
         return createTime;
     }

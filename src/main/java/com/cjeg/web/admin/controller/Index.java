@@ -5,7 +5,6 @@ import java.io.File;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,8 +27,6 @@ import com.cjeg.core.annotation.Authority;
 @RequestMapping("")
 public class Index {
 	
-	@Autowired
-	private Test abc;
 	private Logger logger=Logger.getLogger(Index.class);
 	//将根目录重定向到index页面
 	@RequestMapping("/")
@@ -40,6 +37,8 @@ public class Index {
 	@Authority(Authority.ADMIN)
 	@RequestMapping(value="/{path}",method=RequestMethod.GET)
 	public String page(@PathVariable("path") String path){
+		//当需要建立目录时用.隔开
+		path=path.replaceAll("\\.", "/");
 		return path;
 	}
 	
@@ -56,7 +55,6 @@ public class Index {
 	@RequestMapping("/tables")
 	//@ResponseBody
 	public String listTable(HttpSession session){
-		System.out.println(abc);
 		Database database=new Database();
 		database.setHost("localhost");
 		database.setPort(3306);
@@ -72,39 +70,4 @@ public class Index {
 		return "tables";
 	}
 	
-	@RequestMapping("/tianqi")
-	@ResponseBody
-	public Weather tianqi(){
-		System.out.println("查询天气");
-		Weather w=new Weather();
-		w.setName("zhangsan");
-		w.setAddress("wuhan");
-		w.setAge(33);
-		return w;
-	}
-	
-	class Weather{
-		String name;
-		int age;
-		String address;
-		public String getName() {
-			return name;
-		}
-		public void setName(String name) {
-			this.name = name;
-		}
-		public int getAge() {
-			return age;
-		}
-		public void setAge(int age) {
-			this.age = age;
-		}
-		public String getAddress() {
-			return address;
-		}
-		public void setAddress(String address) {
-			this.address = address;
-		}
-		
-	}
 }

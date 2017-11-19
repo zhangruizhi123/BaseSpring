@@ -1,6 +1,9 @@
 ;(function($){
 	$.fn.table=function(dt){
 		var dd={
+			type:'get',
+			dataType:'json',
+			async:false,
 			title:'',/*表名*/
 			url:'',/*要加载的数据*/
 			data:[],/*直接填写的数据，当不为空时优先加载该数据*/
@@ -9,6 +12,18 @@
 		};
 		$(this).html("<h2>111</h2>");
 		$.extend(true, dd, dt);
+		//当没有数据是
+		if(dd.data.length<=0){
+			$.ajax({
+				url:dd.url,
+				type:dd.type,
+				dataType:dd.dataType,
+				async:dd.async,
+				success:function(json){
+					dd.data=json.obj;
+				}
+			});
+		}
 		//表格对象
 		var  $table=$("<table class='table table-bordered table-hover'></table>");
 		//表头对象
@@ -17,7 +32,12 @@
 		var $th=$("<tr></tr>");
 		for(var i=0;i<dd.column.length;i++){
 			var item=dd.column[i];
-			var td="<td>"+item.name+"</td>";
+			var td="";
+			if(item.visible=="hide"){
+				td="<td style='display:none'>"+item.name+"</td>";
+			}else{
+				td="<td>"+item.name+"</td>";
+			}
 			$th.append($(td));
 		}
 		$tabHead.append($th);
@@ -33,7 +53,17 @@
 				var key=colItem.field;
 				//该属性可以连级操作,如field="abc.def"
 				var text=$.jsonStr(item,key);
-				bdTR+="<td>"+text+"</td>";
+				var align="left";
+				if(colItem.align!=undefined&&colItem.align!=""){
+					align=colItem.align;
+				}
+				if(colItem.visible=="hide"){
+					bdTR+="<td style='display:none;text-align:"+align+";'>"+text+"</td>";
+				}else{
+					
+					bdTR+="<td style='text-align:"+align+";'>"+text+"</td>";
+				}
+				
 			}
 			bdTR+="</tr>";
 			var $bdTR=$(bdTR);
