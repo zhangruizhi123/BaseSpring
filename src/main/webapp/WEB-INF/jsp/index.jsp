@@ -11,6 +11,7 @@
 <link rel="icon" href="${ctx}/static/img/favicon.ico" type="image/x-icon" />
 <link rel="stylesheet" type="text/css" href="${ctx}/static/css/navmenu.css">
 <title>登录页面</title>
+
 <style type="text/css">
 #bodyFrame{
 	border:0px;

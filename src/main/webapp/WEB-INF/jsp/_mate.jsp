@@ -3,14 +3,17 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
 <c:set var="ctx" value="<%=request.getContextPath()%>"/>
-<link rel="icon" href="${ctx}/static/img/logo.ico" type="img/x-ico" />
+<link rel="icon" href="${ctx}/static/img/logo.ico?v=<%=Math.random()%>" type="img/x-ico" />
 <script type="text/javascript" src="${ctx}/static/js/jQuery/jquery.min.js"></script>
 
 <!-- 添加bootstrap库 -->
 <script type="text/javascript" src="${ctx}/static/js/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="${ctx}/static/js/bootstrap/js/base.js"></script>
+<script type="text/javascript" src="${ctx}/static/js/bootstrap/js/base.js?v=<%=Math.random()%>"></script>
 <link rel="stylesheet" type="text/css" href="${ctx}/static/js/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="${ctx}/static/js/bootstrap/css/base.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/static/js/bootstrap/css/base.css?v=<%=Math.random()%>">
+<link rel="icon" href="${ctx}/img/favicon.ico" type="image/x-icon" />
+<script type="text/javascript" src="${ctx}/static/js/Vue/vue.min.js"></script>
+
 <!-- 使用easy UI 库 -->
 <!-- 
 <link rel="stylesheet" type="text/css"

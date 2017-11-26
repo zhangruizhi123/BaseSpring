@@ -7,6 +7,8 @@ public class Response<T> {
 	private String msg;
 	//分页总数
 	private long total;
+	//当前页
+	private int page=1;
 	//返回信息
 	private T obj;
 	public int getFlag() {
@@ -33,6 +35,12 @@ public class Response<T> {
 	}
 	public void setObj(T obj) {
 		this.obj = obj;
+	}
+	public int getPage() {
+		return page;
+	}
+	public void setPage(int page) {
+		this.page = page;
 	}
 	
 }
